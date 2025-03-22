@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				 <a href="index-2.html"><img class="logo" src="images/logo1.png" alt=""></a>
+				 <a href="index-2.php"><img class="logo" src="images/logo1.png" alt=""></a>
 				 <p>5th Avenue st, manhattan<br>
 				New York, NY 10001</p>
 				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
@@ -14,7 +14,6 @@
 					<li><a href="#">Blockbuster</a></li>
 					<li><a href="#">Contact Us</a></li>
 					<li><a href="#">Forums</a></li>
-					<li><a href="#">Blog</a></li>
 					<li><a href="#">Help Center</a></li>
 				</ul>
 			</div>
