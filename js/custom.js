@@ -4,8 +4,8 @@ $(window).on('load', function() { // makes sure the whole site is loaded
 	var preloader = $('#preloader');
 	var body = $('body');
 	status.fadeOut(); // will first fade out the loading animation 
-	preloader.delay(0).fadeOut('fast'); // will fade out the white DIV that covers the website. 
-	body.delay(0).css({'overflow':'visible'});
+	preloader.fadeOut('fast'); // will fade out the white DIV that covers the website. 
+	body.css({'overflow':'visible'});
 	var vidDefer = document.getElementsByTagName('iframe');
 	for (var i=0; i<vidDefer.length; i++) {
 		if(vidDefer[i].getAttribute('data-src')) {
