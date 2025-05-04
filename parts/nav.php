@@ -11,7 +11,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index-2.php"><img class="logo" src="images/logo2.png" alt="" width="119" height="58"></a>
+				    <a href="index.php"><img class="logo" src="images/logo2.png" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -24,8 +24,7 @@
 							Home <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="index-2.php">Home 01</a></li>
-								<li><a href="homev2.php">Home 02</a></li>
+								<li><a href="index.php">Home 01</a></li>
 								<li><a href="homev3.php">Home 03</a></li>
 							</ul>
 						</li>
@@ -51,31 +50,17 @@
 							celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="celebritygrid01.php">celebrity grid 01</a></li>
 								<li><a href="celebritygrid02.php">celebrity grid 02 </a></li>
 								<li><a href="celebritylist.php">celebrity list</a></li>
 								<li class="it-last"><a href="celebritysingle.php">celebrity single</a></li>
 							</ul>
 						</li>
-
-						<!--<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							news <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="bloglist.html">blog List</a></li>
-								<li><a href="bloggrid.html">blog Grid</a></li>
-								<li class="it-last"><a href="blogdetail.html">blog Detail</a></li>
-							</ul>
-						</li>-->
-
 						<li class="dropdown first">
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
 							community <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
 								<li><a href="userfavoritegrid.php">user favorite grid</a></li>
-								<li><a href="userfavoritelist.php">user favorite list</a></li>
 								<li><a href="userprofile.php">user profile</a></li>
 								<li class="it-last"><a href="userrate.php">user rate</a></li>
 							</ul>
