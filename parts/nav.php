@@ -78,8 +78,16 @@
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
-						<li class="loginLink"><a href="#">LOG In</a></li>
-						<li class="btn signupLink"><a href="#">sign up</a></li>
+
+						<?php if (!isset($_SESSION['user']['username'])): ?>
+    					<li class="loginLink"><a href="#">LOG In</a></li>
+    					<li class="btn signupLink"><a href="#">sign up</a></li>
+ 						<?php else: ?>
+   						<li class="nav-user">
+     					Hello, <?= htmlspecialchars($_SESSION['user']['username']) ?>
+    					</li>
+    					<li><a href="logout.php">Logout</a></li>
+  						<?php endif; ?>
 					</ul>
 				</div>
 			<!-- /.navbar-collapse -->

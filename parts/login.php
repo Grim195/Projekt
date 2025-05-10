@@ -7,7 +7,7 @@ if (!isset($_SESSION['user'])):
     <div class="login-content">
         <a href="#" class="close">x</a>
         <h3>Login</h3>
-        <form method="post" action="/db/spracovanielogin.php">
+        <form method="post" action="db/spracovanielogin.php">
             <div class="row">
                 <label for="email">
                     Email:
@@ -48,7 +48,7 @@ if (!isset($_SESSION['user'])):
     <div class="login-content">
         <a href="#" class="close">x</a>
         <h3>Sign up</h3>
-        <form method="post" action="/db/spracovaniesignup.php">
+        <form method="post" action="db/spracovaniesignup.php">
             <div class="row">
                 <label for="username-2">
                     Username:
