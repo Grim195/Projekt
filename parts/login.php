@@ -7,11 +7,11 @@ if (!isset($_SESSION['user'])):
     <div class="login-content">
         <a href="#" class="close">x</a>
         <h3>Login</h3>
-        <form method="post" action="login.php">
+        <form method="post" action="/db/spracovanielogin.php">
             <div class="row">
-                <label for="username">
-                    Username:
-                    <input type="text" name="username" id="username" placeholder="YourUsername"
+                <label for="email">
+                    Email:
+                    <input type="text" name="email" id="email" placeholder="YourEmail"
                     pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{4,20}$" required />
                 </label>
             </div>
@@ -48,7 +48,7 @@ if (!isset($_SESSION['user'])):
     <div class="login-content">
         <a href="#" class="close">x</a>
         <h3>Sign up</h3>
-        <form method="post" action="signup.php">
+        <form method="post" action="/db/spracovaniesignup.php">
             <div class="row">
                 <label for="username-2">
                     Username:
