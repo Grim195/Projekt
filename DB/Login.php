@@ -1,4 +1,5 @@
 <?php
+require_once "DB/config.php";
 $host = "localhost";
 $db = "projekt";
 $user = "root";
