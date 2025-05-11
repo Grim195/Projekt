@@ -17,19 +17,26 @@ class Login extends Database {
     }
 
     public function attempt($username, $password) {
-        $stmt = $this->connection->prepare("SELECT * FROM users WHERE username = :username");
-        $stmt->execute(['username' => $username]);
-        $user = $stmt->fetch();
+    // $username actually holds the email
+    $stmt = $this->connection->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->execute([$username]);
+    $user = $stmt->fetch();
 
-        if ($user && password_verify($password, $user['password_hash'])) {
-            // Set session
-            $_SESSION['user'] = [
-                'id' => $user['id'],
-                'username' => $user['username']
-            ];
-            return true;
+    if ($user && password_verify($password, $user['password_hash'])) {
+        // Make sure the session is started
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
 
-        return false;
+        // Set session with user info
+        $_SESSION['user'] = [
+            'username' => $user['username'],
+            'email' => $user['email']
+        ];
+
+        return true;
     }
+
+    return false;
+}
 }

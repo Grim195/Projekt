@@ -1,3 +1,9 @@
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <header class="ht-header">
 	<div class="container">
 		<nav class="navbar navbar-default navbar-custom">
@@ -79,15 +85,14 @@
 						</li>                
 						<li><a href="#">Help</a></li>
 
-						<?php if (!isset($_SESSION['user']['username'])): ?>
-    					<li class="loginLink"><a href="#">LOG In</a></li>
-    					<li class="btn signupLink"><a href="#">sign up</a></li>
- 						<?php else: ?>
-   						<li class="nav-user">
-     					Hello, <?= htmlspecialchars($_SESSION['user']['username']) ?>
-    					</li>
-    					<li><a href="logout.php">Logout</a></li>
-  						<?php endif; ?>
+    				<?php if (isset($_SESSION['user'])): ?>
+        				<li><a href="#">Hello, <?= htmlspecialchars($_SESSION['user']['username']) ?></a></li>
+        				<li class="btn signupLink"><a href="db/logout.php">Logout</a></li>
+    				<?php else: ?>
+        				<li class="loginLink"><a href="#">LOG In</a></li>
+        				<li class="btn signupLink"><a href="#">sign up</a></li>
+    				<?php endif; ?>
+
 					</ul>
 				</div>
 			<!-- /.navbar-collapse -->

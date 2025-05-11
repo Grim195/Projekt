@@ -1,4 +1,5 @@
-<?php include_once "parts/header.php";?>
+<?php 
+include_once "parts/header.php";?>
 <body>
 <?php include_once "parts/preload.php";?>
 <!--signup/login form popup-->
