@@ -8,46 +8,51 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
-$db = new Database();
+// Database connection
+$db   = new Database();
 $conn = $db->getConnection();
 
-$email = $_SESSION['user']['email'];
-$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-$stmt->execute([$email]);
+// Fetch current user data
+$stmt = $conn->prepare(
+    "SELECT id, username, email, password_hash FROM users WHERE email = ?"
+);
+$stmt->execute([$_SESSION['user']['email']]);
 $user = $stmt->fetch();
 
-$updateMessage = "";
+// Messages
+$updateMessage   = "";
 $passwordMessage = "";
 
-// Update Profile
+// Handle profile update (email and username)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_profile'])) {
     $username = trim($_POST['username']);
     $emailNew = trim($_POST['email']);
-    $firstName = trim($_POST['first_name']);
-    $lastName = trim($_POST['last_name']);
 
-    $update = $conn->prepare("UPDATE users SET username = ?, email = ?, first_name = ?, last_name = ? WHERE id = ?");
-    $update->execute([$username, $emailNew, $firstName, $lastName, $user['id']]);
+    $update = $conn->prepare(
+        "UPDATE users SET username = ?, email = ? WHERE id = ?"
+    );
+    $update->execute([$username, $emailNew, $user['id']]);
 
-    $_SESSION['user']['email'] = $emailNew;
+    // Update session
     $_SESSION['user']['username'] = $username;
+    $_SESSION['user']['email'] = $emailNew;
 
     $updateMessage = "Profile updated successfully!";
 }
 
-// Change Password
+// Handle password change
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
-    $oldPass = $_POST['old_password'];
-    $newPass = $_POST['new_password'];
-    $confirmPass = $_POST['confirm_password'];
+    $oldPass     = $_POST['old_password'] ?? '';
+    $newPass     = $_POST['new_password'] ?? '';
+    $confirmPass = $_POST['confirm_password'] ?? '';
 
-    if (!password_verify($oldPass, $user['password'])) {
+    if (!password_verify($oldPass, $user['password_hash'])) {
         $passwordMessage = "Old password is incorrect.";
     } elseif ($newPass !== $confirmPass) {
         $passwordMessage = "New passwords do not match.";
     } else {
         $hashed = password_hash($newPass, PASSWORD_DEFAULT);
-        $stmt = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
+        $stmt = $conn->prepare("UPDATE users SET password_hash = ? WHERE id = ?");
         $stmt->execute([$hashed, $user['id']]);
         $passwordMessage = "Password updated successfully.";
     }

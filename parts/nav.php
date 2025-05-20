@@ -53,7 +53,7 @@ if (session_status() === PHP_SESSION_NONE) {
 						<li><a href="#">Help</a></li>
 
     				<?php if (isset($_SESSION['user'])): ?>
-        				<li><a href="#">Hello, <?= htmlspecialchars($_SESSION['user']['username']) ?></a></li>
+        				<li><a href="userprofile.php">Hello, <?= htmlspecialchars($_SESSION['user']['username']) ?></a></li>
         				<li class="btn logoutLink"><a href="db/logout.php">Logout</a></li>
     				<?php else: ?>
         				<li class="loginLink"><a href="#">LOG In</a></li>
