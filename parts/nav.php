@@ -1,3 +1,9 @@
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <header class="ht-header">
 	<div class="container">
 		<nav class="navbar navbar-default navbar-custom">
@@ -11,7 +17,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index-2.php"><img class="logo" src="images/logo2.png" alt="" width="119" height="58"></a>
+				    <a href="index.php"><img class="logo" src="images/logo2.png" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -19,63 +25,15 @@
 						<li class="hidden">
 							<a href="#page-top"></a>
 						</li>
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown">
-							Home <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="index-2.php">Home 01</a></li>
-								<li><a href="homev2.php">Home 02</a></li>
-								<li><a href="homev3.php">Home 03</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							movies<i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Movie grid<i class="ion-ios-arrow-forward"></i></a>
-									<ul class="dropdown-menu level2">
-										<li><a href="moviegrid.php">Movie grid</a></li>
-										<li><a href="moviegridfw.php">movie grid full width</a></li>
-									</ul>
-								</li>			
-								<li><a href="movielist.php">Movie list</a></li>
-								<li><a href="moviesingle.php">Movie single</a></li>
-								<li class="it-last"><a href="seriessingle.php">Series single</a></li>
-							</ul>
-						</li>
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="celebritygrid01.php">celebrity grid 01</a></li>
-								<li><a href="celebritygrid02.php">celebrity grid 02 </a></li>
-								<li><a href="celebritylist.php">celebrity list</a></li>
-								<li class="it-last"><a href="celebritysingle.php">celebrity single</a></li>
-							</ul>
-						</li>
-
-						<!--<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							news <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="bloglist.html">blog List</a></li>
-								<li><a href="bloggrid.html">blog Grid</a></li>
-								<li class="it-last"><a href="blogdetail.html">blog Detail</a></li>
-							</ul>
-						</li>-->
-
+						<li><a href="index.php">Home</a></li>
+						<li><a href="moviegrid.php">Movies</a></li>
+						<li><a href="celebritylist.php">celebrities</a></li>
 						<li class="dropdown first">
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
 							community <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
 								<li><a href="userfavoritegrid.php">user favorite grid</a></li>
-								<li><a href="userfavoritelist.php">user favorite list</a></li>
 								<li><a href="userprofile.php">user profile</a></li>
 								<li class="it-last"><a href="userrate.php">user rate</a></li>
 							</ul>
@@ -93,8 +51,15 @@
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
-						<li class="loginLink"><a href="#">LOG In</a></li>
-						<li class="btn signupLink"><a href="#">sign up</a></li>
+
+    				<?php if (isset($_SESSION['user'])): ?>
+        				<li><a href="userprofile.php">Hello, <?= htmlspecialchars($_SESSION['user']['username']) ?></a></li>
+        				<li class="btn logoutLink"><a href="db/logout.php">Logout</a></li>
+    				<?php else: ?>
+        				<li class="loginLink"><a href="#">LOG In</a></li>
+        				<li class="btn signupLink"><a href="#">sign up</a></li>
+    				<?php endif; ?>
+
 					</ul>
 				</div>
 			<!-- /.navbar-collapse -->
