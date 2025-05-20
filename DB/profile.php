@@ -20,7 +20,8 @@ $stmt->execute([$_SESSION['user']['email']]);
 $user = $stmt->fetch();
 
 // Prepare avatarPath (fallback to default)
-if (!empty($user['avatar']) && file_exists(__DIR__ . '/' . $user['avatar'])) {
+if (!empty($user['avatar']) && file_exists(__DIR__ . '/../' . $user['avatar'])
+) {
     $avatarPath = $user['avatar'];
 } else {
     $avatarPath = 'images/uploads/user-img.png';

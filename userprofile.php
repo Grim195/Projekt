@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include_once "DB/profile.php"; ?>
+require_once "DB/profile.php"; ?>
 <?php include_once "parts/header.php"; ?>
 <body>
 <?php include_once "parts/preload.php"; ?>
@@ -36,7 +36,7 @@ include_once "DB/profile.php"; ?>
       <div class="col-md-3 col-sm-12 col-xs-12">
         <div class="user-information">
         	<div class="user-img">
-  				<img src="<?= htmlspecialchars($avatarPath) ?>" alt="Avatar">
+  				    <img src="<?= htmlspecialchars($avatarPath) ?>" alt="Avatar">
 				<!-- Avatar Upload Form -->
   				<form method="POST" action="userprofile.php" enctype="multipart/form-data" id="avatarForm">
     				<!-- Hidden file input -->
