@@ -14,10 +14,17 @@ $conn = $db->getConnection();
 
 // Fetch current user data
 $stmt = $conn->prepare(
-    "SELECT id, username, email, password_hash FROM users WHERE email = ?"
+    "SELECT id, username, email, password_hash, avatar FROM users WHERE email = ?"
 );
 $stmt->execute([$_SESSION['user']['email']]);
 $user = $stmt->fetch();
+
+// Prepare avatarPath (fallback to default)
+if (!empty($user['avatar']) && file_exists(__DIR__ . '/' . $user['avatar'])) {
+    $avatarPath = $user['avatar'];
+} else {
+    $avatarPath = 'images/uploads/user-img.png';
+}
 
 // Messages
 $updateMessage   = "";
@@ -55,6 +62,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
         $stmt = $conn->prepare("UPDATE users SET password_hash = ? WHERE id = ?");
         $stmt->execute([$hashed, $user['id']]);
         $passwordMessage = "Password updated successfully.";
+    }
+}
+
+// Handle avatar upload
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_avatar'])) {
+    if (
+        isset($_FILES['avatar']) &&
+        in_array($_FILES['avatar']['type'], ['image/jpeg','image/png','image/gif']) &&
+        $_FILES['avatar']['error'] === UPLOAD_ERR_OK
+    ) {
+        $ext      = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+        $filename = 'avatar_' . $user['id'] . '.' . $ext;
+        // ← point into the existing images/uploads folder:
+        $targetDir  = __DIR__ . '/../images/uploads/';
+        if (!is_dir($targetDir)) mkdir($targetDir, 0755, true);
+        $destination = $targetDir . $filename;
+
+        if (move_uploaded_file($_FILES['avatar']['tmp_name'], $destination)) {
+            // Save the *web‑accessible* path in DB:
+            $dbPath = 'images/uploads/' . $filename;
+            $stmt   = $conn->prepare("UPDATE users SET avatar = ? WHERE id = ?");
+            $stmt->execute([$dbPath, $user['id']]);
+
+            header("Location: userprofile.php");
+            exit;
+        } else {
+            $updateMessage = "Failed to move uploaded file.";
+        }
+    } else {
+        $updateMessage = "Please upload a valid image (jpg, png, gif).";
     }
 }
 ?>

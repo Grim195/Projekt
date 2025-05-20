@@ -1,9 +1,12 @@
+<?php 
+session_start();
+include_once "DB/profile.php"; ?>
 <?php include_once "parts/header.php"; ?>
 <body>
 <?php include_once "parts/preload.php"; ?>
 <?php include_once "parts/login.php"; ?>
 <?php include_once "parts/nav.php"; ?>
-<?php include_once "DB/profile.php"; ?>
+
 
 <div class="hero user-hero">
   <div class="container">
@@ -32,10 +35,17 @@
     <div class="row ipad-width">
       <div class="col-md-3 col-sm-12 col-xs-12">
         <div class="user-information">
-          <div class="user-img">
-            <a href="#"><img src="images/uploads/user-img.png" alt=""><br></a>
-            <a href="#" class="redbtn">Change avatar</a>
-          </div>
+        	<div class="user-img">
+  				<img src="<?= htmlspecialchars($avatarPath) ?>" alt="Avatar">
+				<!-- Avatar Upload Form -->
+  				<form method="POST" action="userprofile.php" enctype="multipart/form-data" id="avatarForm">
+    				<!-- Hidden file input -->
+					<input type="hidden" name="upload_avatar" value="1"/>
+    				<input type="file" name="avatar" id="avatarInput" accept="image/*" style="display:none;" onchange="document.getElementById('avatarForm').submit()"/>
+					<!-- Styled label acts as your button -->
+    				<label for="avatarInput" class="redbtn">Change avatar</label>
+  				</form>
+			</div>
           <div class="user-fav">
             <p>Account Details</p>
             <ul>
