@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once "parts/header.php";
+$isAdmin = isset($_SESSION['user_id']) && $_SESSION['user_id'] == 1;
 ?>
 <body>
 <?php include_once "parts/preload.php";?>
@@ -278,6 +279,15 @@ include_once "parts/nav.php";
 				<div class="sidebar">
 					<div class="searh-form">
 						<h4 class="sb-title">Search for movie</h4>
+						<!-- add new movie button for admin -->
+								<?php if (isset($_SESSION['user']['username']) && $_SESSION['user']['username'] === 'Admin' &&
+    							$_SESSION['user']['email'] === 'test@admin.com'): ?>
+    							<div class="row" style="margin-bottom: 15px;">
+        							<div class="col-md-12">
+            							<a href="new_movie.php" class="btn_movie">➕ Add New Movie</a>
+        							</div>
+    							</div>
+								<?php endif; ?>
 						<form class="form-style-1" action="#">
 							<div class="row">
 								<div class="col-md-12 form-it">
@@ -324,7 +334,7 @@ include_once "parts/nav.php";
 								</div>
 								<div class="col-md-12 ">
 									<input class="submit" type="submit" value="submit">
-								</div>
+								</div>	
 							</div>
 						</form>
 					</div>

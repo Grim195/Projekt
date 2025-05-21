@@ -4,17 +4,8 @@ include_once "parts/header.php";
 ?>
 <body>
 <?php include_once "parts/preload.php";?>
-<!--signup/login form popup-->
-<?php
-include_once "parts/login.php";
-?>
-<!--end of signup/login form popup-->
-
-<!-- BEGIN | Header -->
-<?php
-include_once "parts/nav.php";
-?>
-<!-- END | Header -->
+<?php include_once "parts/login.php";?>
+<?php include_once "parts/nav.php";?>
 
 <div class="hero mv-single-hero">
 	<div class="container">

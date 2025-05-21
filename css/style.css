@@ -6438,6 +6438,19 @@ ul {
     margin-bottom: 30px;
   }
 }
+.btn_movie {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #ff3d49;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.btn_movie:hover {
+  background: #e72f3d;
+}
 .form-style-1 input.submit {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
