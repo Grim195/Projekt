@@ -13,7 +13,6 @@ if (
 <body>
 <?php include_once "parts/preload.php";?>
 <?php include_once "parts/login.php";?>
-<?php include_once "DB/add_movies.php";?>
 <?php include_once "parts/nav.php";?>
 
 <div class="hero mv-single-hero">   
@@ -32,7 +31,7 @@ if (
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form action="db/save_movie.php" method="POST" enctype="multipart/form-data" class="form-style-1">
+                <form action="db/add_movies.php" method="POST" enctype="multipart/form-data" class="form-style-1">
                     <div class="row">
                         <div class="col-md-6 form-it">
                             <label>Movie Title</label>
@@ -45,10 +44,6 @@ if (
                         <div class="col-md-6 form-it">
                             <label>Duration (in minutes)</label>
                             <input type="number" name="duration" required>
-                        </div>
-                        <div class="col-md-6 form-it">
-                            <label>MPAA Rating</label>
-                            <input type="text" name="mpaa_rating">
                         </div>
                         <div class="col-md-12 form-it">
                             <label>Genre</label>

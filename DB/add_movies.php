@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once __DIR__ . '/../db/config.php';
+require_once __DIR__ . '/../classes/Database.php';
+
 if (
     !isset($_SESSION['user']['username']) ||
     $_SESSION['user']['username'] !== 'Admin' ||
@@ -9,41 +12,45 @@ if (
     exit;
 }
 
-require_once 'db/config.php';
-require_once 'classes/Database.php';
-
 $db = new Database();
 $pdo = $db->getConnection();
 
+// Match actual columns
 $title         = $_POST['title'];
 $description   = $_POST['description'];
 $genre         = $_POST['genre'];
-$release_year  = $_POST['release_year'];
+$release_date  = $_POST['release_year'] . '-01-01';
 $director      = $_POST['director'];
-$duration      = $_POST['duration'];
+$stars         = $_POST['cast'];
+$runtime       = $_POST['duration'];
 $rating        = $_POST['rating'];
 
-// Handle poster upload
-$poster = null;
+$image = null;
 if (isset($_FILES['poster']) && $_FILES['poster']['error'] == UPLOAD_ERR_OK) {
     $filename    = basename($_FILES['poster']['name']);
     $ext         = pathinfo($filename, PATHINFO_EXTENSION);
-    $posterName  = uniqid('poster_') . '.' . $ext;
-    $target_dir  = "images/uploads/";
-    $full_path   = $target_dir . $posterName;
-    
+    $imageName   = uniqid('movie_') . '.' . $ext;
+    $target_dir  = __DIR__ . '/../images/uploads/';
+    $full_path   = $target_dir . $imageName;
+
     if (!is_dir($target_dir)) {
         mkdir($target_dir, 0755, true);
     }
 
     move_uploaded_file($_FILES['poster']['tmp_name'], $full_path);
-    $poster = $full_path;
+    $image = 'images/uploads/' . $imageName;
 }
 
-// Insert into database
-$stmt = $pdo->prepare("INSERT INTO movies (title, description, genre, release_year, director, duration, rating, poster) 
-                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->execute([$title, $description, $genre, $release_year, $director, $duration, $rating, $poster]);
+// Insert with correct field names
+$stmt = $pdo->prepare("
+    INSERT INTO movies (title, genre, director, stars, description, release_date, runtime, rating, image)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+");
 
-header("Location: moviegrid.php?added=1");
+$stmt->execute([
+    $title, $genre, $director, $stars, $description,
+    $release_date, $runtime, $rating, $image
+]);
+
+header("Location: ../moviegrid.php?added=1");
 exit;
