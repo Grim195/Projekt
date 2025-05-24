@@ -21,15 +21,3 @@ $stmt->bindValue(':limit', $moviesPerPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $movies = $stmt->fetchAll();
-
-// Sorting logic
-$sortOptions = [
-    'popularity_desc' => 'rating DESC',
-    'popularity_asc'  => 'rating ASC',
-    'rating_desc'     => 'rating DESC',
-    'rating_asc'      => 'rating ASC',
-    'date_desc'       => 'created_at DESC',
-    'date_asc'        => 'created_at ASC',
-];
-$sortKey = $_GET['sort'] ?? 'date_desc';
-$orderBy = $sortOptions[$sortKey] ?? 'created_at DESC';
