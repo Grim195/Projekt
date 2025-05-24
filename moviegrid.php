@@ -29,17 +29,7 @@ $isAdmin = isset($_SESSION['user_id']) && $_SESSION['user_id'] == 1;
 		<div class="row ipad-width">
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<div class="topbar-filter">
-					<p>Found <span>1,608 movies</span> in total</p>
-					<label>Sort by:</label>
-					<select>
-						<option value="popularity">Popularity Descending</option>
-						<option value="popularity">Popularity Ascending</option>
-						<option value="rating">Rating Descending</option>
-						<option value="rating">Rating Ascending</option>
-						<option value="date">Release date Descending</option>
-						<option value="date">Release date Ascending</option>
-					</select>
-					<a href="movielist.html" class="list"><i class="ion-ios-list-outline "></i></a>
+					 <p>Found <span><?= $totalMovies ?></span> in total</p> 
 					<a  href="moviegrid.html" class="grid"><i class="ion-grid active"></i></a>
 				</div>
 				<div class="flex-wrap-movielist">
@@ -101,13 +91,6 @@ $isAdmin = isset($_SESSION['user_id']) && $_SESSION['user_id'] == 1;
 					                        <option value="Action5">Action 5</option>
 										</select>
 									</div>	
-								</div>
-								<div class="col-md-12 form-it">
-									<label>Rating Range</label>
-									<select>
-									  <option value="range">-- Select the rating range below --</option>
-									  <option value="saab">-- Select the rating range below --</option>
-									</select>
 								</div>
 								<div class="col-md-12 form-it">
 									<label>Release Year</label>

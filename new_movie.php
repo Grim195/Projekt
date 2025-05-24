@@ -46,6 +46,10 @@ if (
                             <input type="number" name="duration" required>
                         </div>
                         <div class="col-md-12 form-it">
+                            <label>Trailer URL (YouTube)</label>
+                            <input type="url" name="trailer_url" placeholder="https://www.youtube.com/watch?v=abc123">
+                        </div>
+                        <div class="col-md-12 form-it">
                             <label>Genre</label>
                             <input type="text" name="genre" placeholder="e.g. Action, Thriller" required>
                         </div>
