@@ -71,12 +71,9 @@ if (
                         </div>
                         <div class="col-md-12 form-it">
                             <label>Poster Image</label>
-                            <form method="POST" enctype="multipart/form-data" id="posterForm">
-                                <input type="hidden" name="upload_poster" value="1"/>
-                                <input type="file" name="poster" id="posterInput" accept="image/*" style="display:none;" required>
-                                <label for="posterInput" class="redbtn" style="cursor:pointer;">Choose Poster</label>
-                                <span id="posterFileName" style="margin-left:10px;"></span>
-                            </form>
+                            <input type="file" name="poster" id="posterInput" accept="image/*" style="display:none;" required>
+                            <label for="posterInput" class="redbtn" style="cursor:pointer;">Choose Poster</label>
+                            <span id="posterFileName" style="margin-left:10px;"></span>
                         </div>
                         <div class="col-md-12">
                             <input class="submit" type="submit" value="Add Movie">

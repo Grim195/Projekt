@@ -25,15 +25,13 @@ include_once "parts/header.php";
                 <div class="movie-img">
                     <img src="<?= htmlspecialchars($movie['image']) ?>" alt="<?= htmlspecialchars($movie['title']) ?>">
                     <div class="movie-btn">
-                        <div class="btn-transform transform-vertical red">
-                            <?php if (!empty($movie['trailer_url'])): ?>
-    							<a href="<?= htmlspecialchars($movie['trailer_url']) ?>" class="item item-1 redbtn fancybox-media hvr-grow" target="_blank">
-        						<i class="ion-play"></i> Watch Trailer
-    							</a>
-							<?php else: ?>
-    							<span class="item item-1 redbtn disabled"><i class="ion-play"></i> Trailer Unavailable</span>
-							<?php endif; ?>
-                        </div>
+                        <?php if (!empty($movie['trailer_url'])): ?>
+                        <a href="<?= htmlspecialchars($movie['trailer_url']) ?>" class="redbtn fancybox-media hvr-grow" target="_blank">
+                        <i class="ion-play"></i> Watch Trailer
+                        </a>
+                        <?php else: ?>
+                        <span class="redbtn disabled"><i class="ion-play"></i> Trailer Unavailable</span>
+                        <?php endif; ?>
                         <div class="btn-transform transform-vertical">
                             <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
                             <div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>

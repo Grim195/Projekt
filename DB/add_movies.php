@@ -24,6 +24,7 @@ $director      = $_POST['director'];
 $stars         = $_POST['cast'];
 $runtime       = $_POST['duration'];
 $rating        = $_POST['rating'];
+$trailer_url = $_POST['trailer_url'] ?? null;
 
 $image = null;
 if (isset($_FILES['poster']) && $_FILES['poster']['error'] == UPLOAD_ERR_OK) {
@@ -43,13 +44,13 @@ if (isset($_FILES['poster']) && $_FILES['poster']['error'] == UPLOAD_ERR_OK) {
 
 // Insert with correct field names
 $stmt = $pdo->prepare("
-    INSERT INTO movies (title, genre, director, stars, description, release_date, runtime, rating, image)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO movies (title, genre, director, stars, description, release_date, runtime, rating, image, trailer_url)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
 $stmt->execute([
     $title, $genre, $director, $stars, $description,
-    $release_date, $runtime, $rating, $image
+    $release_date, $runtime, $rating, $image, $trailer_url
 ]);
 
 header("Location: ../moviegrid.php?added=1");
