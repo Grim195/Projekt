@@ -4229,6 +4229,11 @@ ul {
 .cate .orange {
   background-color: #ec5a1a;
 }
+.movie_title{
+margin-left: 500px !important;
+max-width: 600px !important;
+word-wrap: break-word !important;
+}
 .movie_list .movie-item-style-2 img,
 .movie_single .movie-item-style-2 img,
 .userfav_list .movie-item-style-2 img {
