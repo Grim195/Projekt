@@ -55,5 +55,5 @@ class ShowtimeManager {
     ");
     return $stmt->execute([$movieId, $startTime, $totalSeats, $totalSeats]);
     }
+    
 }
-
