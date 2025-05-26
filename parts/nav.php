@@ -38,6 +38,9 @@ if (session_status() === PHP_SESSION_NONE) {
 								<li class="it-last"><a href="userrate.php">user rate</a></li>
 							</ul>
 						</li>
+						<?php if (isset($_SESSION['user']['username']) && $_SESSION['user']['username'] === 'Admin'): ?>
+    					<li><a href="showtimes.php">Manage Showtimes</a></li>
+						<?php endif; ?>
 					</ul>
 					<ul class="nav navbar-nav flex-child-menu menu-right">
 						<li class="dropdown first">

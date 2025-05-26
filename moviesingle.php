@@ -33,8 +33,7 @@ include_once "parts/header.php";
                         <span class="redbtn disabled"><i class="ion-play"></i> Trailer Unavailable</span>
                         <?php endif; ?>
                         <div class="btn-transform transform-vertical">
-                            <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
-                            <div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+                            <div><a href="#" class="item yellowbtn hvr-grow"> <i class="ion-card"></i> Buy ticket</a></div>
                         </div>
                     </div>
                 </div>
