@@ -8,17 +8,16 @@ class ShowtimeManager {
 
     // Get upcoming showtimes for a specific movie
     public function getUpcomingShowtimes($movieId) {
-        $stmt = $this->db->prepare("SELECT * FROM showtimes WHERE movie_id = ? AND show_date > NOW() ORDER BY show_date ASC");
-        $stmt->execute([$movieId]);
-        return $stmt->fetchAll();
-    }
+    $stmt = $this->db->prepare("SELECT * FROM showtimes WHERE movie_id = ? AND start_time > NOW() ORDER BY start_time ASC");
+    $stmt->execute([$movieId]);
+    return $stmt->fetchAll();
+}
 
-    // Check if the movie has at least one future showtime
-    public function hasUpcomingShowtime($movieId) {
-        $stmt = $this->db->prepare("SELECT COUNT(*) FROM showtimes WHERE movie_id = ? AND show_date > NOW()");
-        $stmt->execute([$movieId]);
-        return $stmt->fetchColumn() > 0;
-    }
+public function hasUpcomingShowtime($movieId) {
+    $stmt = $this->db->prepare("SELECT COUNT(*) FROM showtimes WHERE movie_id = ? AND start_time > NOW()");
+    $stmt->execute([$movieId]);
+    return $stmt->fetchColumn() > 0;
+}
 
     // Book tickets for a user
     public function bookSeats($showtimeId, $userId, $seatCount) {

@@ -30,9 +30,10 @@ class Login extends Database {
 
         // Set session with user info
         $_SESSION['user'] = [
+            'id' => $user['id'],
             'username' => $user['username'],
             'email' => $user['email']
-        ];
+];
 
         return true;
     }

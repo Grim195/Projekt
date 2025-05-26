@@ -27,14 +27,12 @@ if (session_status() === PHP_SESSION_NONE) {
 						</li>
 						<li><a href="index.php">Home</a></li>
 						<li><a href="moviegrid.php">Movies</a></li>
-						<li><a href="celebritylist.php">celebrities</a></li>
 						<li class="dropdown first">
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
 							community <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
 								<li><a href="userfavoritegrid.php">user favorite grid</a></li>
-								<li><a href="userprofile.php">user profile</a></li>
 								<li class="it-last"><a href="userrate.php">user rate</a></li>
 							</ul>
 						</li>

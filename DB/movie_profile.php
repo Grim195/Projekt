@@ -1,11 +1,11 @@
 <?php 
 require_once __DIR__ . '/../db/config.php';
 require_once __DIR__ . '/../classes/Database.php';
+require_once __DIR__ . '/../classes/ShowtimeManager.php';
 
 $db = new Database();
 $conn = $db->getConnection();
 
-require_once __DIR__ . '/../classes/ShowtimeManager.php';
 $showtimeManager = new ShowtimeManager($conn);
 
 // Get the movie ID from the URL
@@ -25,7 +25,4 @@ if (!$movie) {
     echo "<h2>Movie not found.</h2>";
     exit;
 }
-
-// Format release date
-$releaseYear = date('Y', strtotime($movie['release_date']));
 ?>

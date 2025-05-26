@@ -11,7 +11,7 @@ if (!isset($_SESSION['user'])) {
 <body>
 <?php include_once "parts/nav.php"; ?>
 <div class="page-single">
-    <div class="container">
+    <div class="container_buy">
         <h2>Buy Tickets</h2>
         <?php if ($message): ?>
             <p style="color: <?= strpos($message, 'successfully') ? 'green' : 'red' ?>;"><?= htmlspecialchars($message) ?></p>

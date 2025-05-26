@@ -107,6 +107,13 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+.container_buy{
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 150px;
+}
 @media (min-width: 768px) {
   .container {
     width: 750px;
@@ -5793,6 +5800,7 @@ word-wrap: break-word !important;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  margin-top: 5px;
 }
 .yellowbtn i {
   margin-right: 10px;
