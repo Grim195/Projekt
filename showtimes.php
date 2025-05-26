@@ -13,13 +13,12 @@ if (!isset($_SESSION['user']['username']) || $_SESSION['user']['username'] !== '
 
 <div class="page-single">
     <div class="container">
-        <h2>Add New Showtime</h2>
 
         <?php if ($message): ?>
             <p style="color: green;"><?= htmlspecialchars($message) ?></p>
         <?php endif; ?>
 
-        <form method="POST" class="form-style-1">
+        <form method="POST" class="form-style-1 showtime-form">
             <div class="row">
                 <div class="col-md-6 form-it">
                     <label>Movie</label>

@@ -5861,6 +5861,9 @@ word-wrap: break-word !important;
   background-color: #020d18;
   padding: 75px 0;
 }
+.showtime-form {
+    margin-top: 150px;
+}
 .social-btn {
   margin-bottom: 40px;
   display: -webkit-flex;
