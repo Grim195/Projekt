@@ -39,10 +39,8 @@ require_once "DB/profile.php"; ?>
   				    <img src="<?= htmlspecialchars($avatarPath) ?>" alt="Avatar">
 				<!-- Avatar Upload Form -->
   				<form method="POST" action="userprofile.php" enctype="multipart/form-data" id="avatarForm">
-    				<!-- Hidden file input -->
 					<input type="hidden" name="upload_avatar" value="1"/>
     				<input type="file" name="avatar" id="avatarInput" accept="image/*" style="display:none;" onchange="document.getElementById('avatarForm').submit()"/>
-					<!-- Styled label acts as your button -->
     				<label for="avatarInput" class="redbtn">Change avatar</label>
   				</form>
 			</div>

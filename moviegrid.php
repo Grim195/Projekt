@@ -30,7 +30,7 @@ $isAdmin = isset($_SESSION['user_id']) && $_SESSION['user_id'] == 1;
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<div class="topbar-filter">
 					 <p>Found <span><?= $totalMovies ?></span> in total</p> 
-					<a  href="moviegrid.html" class="grid"><i class="ion-grid active"></i></a>
+					<a  href="moviegrid.php" class="grid"><i class="ion-grid active"></i></a>
 				</div>
 				<div class="flex-wrap-movielist">
   					<?php foreach ($movies as $movie): ?>

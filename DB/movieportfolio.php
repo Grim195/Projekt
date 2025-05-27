@@ -1,23 +1,20 @@
 <?php
-require_once __DIR__ . '/../db/config.php';
 require_once __DIR__ . '/../classes/Database.php';
+require_once __DIR__ . '/../classes/MovieManager.php';
 
 $db = new Database();
 $conn = $db->getConnection();
+$movieManager = new MovieManager($conn);
 
-// Pagination settings
-$moviesPerPage = 12;
-$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
-$offset = ($page - 1) * $moviesPerPage;
+// Pagination
+$perPage = 12;
+$page = isset($_GET['page']) ? max((int)$_GET['page'], 1) : 1;
+$offset = ($page - 1) * $perPage;
 
-// Total movie count for pagination display
-$totalStmt = $conn->query("SELECT COUNT(*) FROM movies");
-$totalMovies = $totalStmt->fetchColumn();
-$totalPages = ceil($totalMovies / $moviesPerPage);
+$totalMovies = $movieManager->getMovieCount();
+$totalPages = ceil($totalMovies / $perPage);
 
-// Movies for current page
-$stmt = $conn->prepare("SELECT id, title, rating, image FROM movies ORDER BY created_at DESC LIMIT :limit OFFSET :offset");
-$stmt->bindValue(':limit', $moviesPerPage, PDO::PARAM_INT);
-$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-$stmt->execute();
-$movies = $stmt->fetchAll();
+// Get paginated movies
+$movies = $movieManager->getMoviesPaginated($perPage, $offset);
+
+?>
