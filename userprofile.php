@@ -38,16 +38,16 @@ require_once "DB/profile.php"; ?>
         	<div class="user-img">
   				    <img src="<?= htmlspecialchars($avatarPath) ?>" alt="Avatar">
 				<!-- Avatar Upload Form -->
-  				<form method="POST" action="userprofile.php" enctype="multipart/form-data" id="avatarForm">
-					<input type="hidden" name="upload_avatar" value="1"/>
-    				<input type="file" name="avatar" id="avatarInput" accept="image/*" style="display:none;" onchange="document.getElementById('avatarForm').submit()"/>
-    				<label for="avatarInput" class="redbtn">Change avatar</label>
-  				</form>
+  				<form method="POST" action="db/update_avatar.php" enctype="multipart/form-data" id="avatarForm">
+            <input type="file" name="avatar" id="avatarInput" accept="image/*" style="display:none;" onchange="document.getElementById('avatarForm').submit()" />
+            <label for="avatarInput" class="redbtn">Change avatar</label>
+          </form>
 			</div>
           <div class="user-fav">
             <p>Account Details</p>
             <ul>
               <li class="active"><a href="userprofile.php">Profile</a></li>
+              <li><a href="mytickets.php">My Tickets</a></li>
               <li><a href="userfavoritegrid.php">Favorite movies</a></li>
               <li><a href="userrate.php">Rated movies</a></li>
             </ul>

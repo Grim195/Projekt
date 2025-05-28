@@ -7,62 +7,38 @@ $db = new Database();
 $conn = $db->getConnection();
 $userManager = new UserManager($conn);
 
+// Check session
 if (!isset($_SESSION['user'])) {
     header("Location: index.php?error=not_logged_in");
     exit;
 }
 
+// Fetch current user data
 $user = $userManager->getUserByEmail($_SESSION['user']['email']);
 $updateMessage = "";
 $passwordMessage = "";
 
-// Avatar
+// Determine avatar path
 $avatarPath = (!empty($user['avatar']) && file_exists(__DIR__ . '/../' . $user['avatar']))
     ? $user['avatar']
     : 'images/uploads/user-img.png';
 
-// Handle avatar upload
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_avatar'])) {
-    if (isset($_FILES['avatar']) &&
-        in_array($_FILES['avatar']['type'], ['image/jpeg','image/png','image/gif']) &&
-        $_FILES['avatar']['error'] === UPLOAD_ERR_OK
-    ) {
-        $ext = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
-        $filename = 'avatar_' . $user['id'] . '.' . $ext;
-        $targetDir = __DIR__ . '/../images/uploads/';
-        if (!is_dir($targetDir)) mkdir($targetDir, 0755, true);
-        $destination = $targetDir . $filename;
-
-        if (move_uploaded_file($_FILES['avatar']['tmp_name'], $destination)) {
-            $dbPath = 'images/uploads/' . $filename;
-            $userManager->updateAvatar($user['id'], $dbPath);
-            $_SESSION['user']['avatar'] = $dbPath;
-            header("Location: ../userprofile.php");
-            exit;
-        } else {
-            $updateMessage = "Failed to move uploaded file.";
-        }
-    } else {
-        $updateMessage = "Invalid image type.";
-    }
-}
-
-// Handle profile save
+// Handle profile update
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_profile'])) {
     $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
+    $email    = trim($_POST['email']);
 
     if ($userManager->updateProfile($user['id'], $username, $email)) {
         $_SESSION['user']['username'] = $username;
-        $_SESSION['user']['email'] = $email;
+        $_SESSION['user']['email']    = $email;
         $updateMessage = "Profile updated successfully!";
     }
 }
 
 // Handle password change
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
-    $oldPass = $_POST['old_password'] ?? '';
-    $newPass = $_POST['new_password'] ?? '';
+    $oldPass     = $_POST['old_password'] ?? '';
+    $newPass     = $_POST['new_password'] ?? '';
     $confirmPass = $_POST['confirm_password'] ?? '';
 
     if (!password_verify($oldPass, $user['password_hash'])) {
@@ -74,5 +50,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
         $userManager->updatePassword($user['id'], $hashed);
         $passwordMessage = "Password updated successfully.";
     }
+    
+    // Fetch user tickets
+$stmt = $conn->prepare("
+    SELECT t.seats, s.start_time, m.title
+    FROM tickets t
+    JOIN showtimes s ON t.showtime_id = s.id
+    JOIN movies m ON s.movie_id = m.id
+    WHERE t.user_id = ?
+    ORDER BY s.start_time DESC
+");
+$stmt->execute([$user['id']]);
+$userTickets = $stmt->fetchAll();
 }
 ?>

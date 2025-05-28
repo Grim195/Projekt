@@ -32,6 +32,7 @@ if (session_status() === PHP_SESSION_NONE) {
 							community <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
+								<li><a href="mytickets.php">My Tickets</a></li>
 								<li><a href="userfavoritegrid.php">user favorite grid</a></li>
 								<li class="it-last"><a href="userrate.php">user rate</a></li>
 							</ul>
@@ -40,17 +41,7 @@ if (session_status() === PHP_SESSION_NONE) {
     					<li><a href="showtimes.php">Manage Showtimes</a></li>
 						<?php endif; ?>
 					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							pages <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="landing.php">Landing</a></li>
-								<li><a href="404.php">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.php">Coming soon</a></li>
-							</ul>
-						</li>                
+					<ul class="nav navbar-nav flex-child-menu menu-right">               
 						<li><a href="#">Help</a></li>
 
     				<?php if (isset($_SESSION['user'])): ?>
