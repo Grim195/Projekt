@@ -78,23 +78,22 @@ include_once "parts/nav.php";
     				</div>
 				</div>
 				<div class="title-hd">
-    <h2>Top Rated Movies</h2>
-</div>
-
-<div class="flex-wrap-movielist">
-  <?php foreach ($topRatedMovies as $movie): ?>
-    <div class="movie-item-style-2 movie-item-style-1">
-      <img src="<?= htmlspecialchars($movie['image']) ?>" alt="<?= htmlspecialchars($movie['title']) ?>">
-      <div class="hvr-inner">
-        <a href="moviesingle.php?id=<?= $movie['id'] ?>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-      </div>
-      <div class="mv-item-infor">
-        <h6><a href="moviesingle.php?id=<?= $movie['id'] ?>"><?= htmlspecialchars($movie['title']) ?></a></h6>
-        <p class="rate"><i class="ion-android-star"></i><span><?= htmlspecialchars($movie['rating']) ?></span> /10</p>
-      </div>
-    </div>
-  <?php endforeach; ?>
-</div>
+    				<h2>Top Rated Movies</h2>
+				</div>
+				<div class="flex-wrap-movielist">
+  					<?php foreach ($topRatedMovies as $movie): ?>
+    				<div class="movie-item-style-2 movie-item-style-1">
+      					<img src="<?= htmlspecialchars($movie['image']) ?>" alt="<?= htmlspecialchars($movie['title']) ?>">
+      					<div class="hvr-inner">
+        					<a href="moviesingle.php?id=<?= $movie['id'] ?>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+      					</div>
+      					<div class="mv-item-infor">
+        					<h6><a href="moviesingle.php?id=<?= $movie['id'] ?>"><?= htmlspecialchars($movie['title']) ?></a></h6>
+        					<p class="rate"><i class="ion-android-star"></i><span><?= htmlspecialchars($movie['rating']) ?></span> /10</p>
+      					</div>
+    				</div>
+  					<?php endforeach; ?>
+				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="sidebar">
@@ -144,8 +143,7 @@ include_once "parts/nav.php";
 		<div class="row ipad-width">
 			<div class="col-md-12">
 				<div class="title-hd">
-					<h2>in theater</h2>
-					<a href="#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+					<h2>Trailers</h2>
 				</div>
 				<div class="videos">
 				 	<div class="slider-for-2 video-ft">
