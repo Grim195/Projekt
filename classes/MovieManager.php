@@ -1,5 +1,4 @@
 <?php
-
 require_once(__DIR__ . '/../db/config.php');
 require_once(__DIR__ . '/../classes/Database.php');
 class MovieManager {
@@ -47,6 +46,31 @@ public function getMoviesPaginated($limit, $offset) {
     $stmt = $this->db->prepare("SELECT * FROM movies ORDER BY created_at DESC LIMIT ? OFFSET ?");
     $stmt->bindValue(1, (int)$limit, PDO::PARAM_INT);
     $stmt->bindValue(2, (int)$offset, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+public function getLatestMovies($limit = 5) {
+    $stmt = $this->db->prepare("SELECT id, title, genre, rating, image FROM movies ORDER BY created_at DESC LIMIT ?");
+    $stmt->bindValue(1, (int)$limit, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+public function getMoviesWithUpcomingShowtimes($limit = 5) {
+    $stmt = $this->db->prepare("
+        SELECT DISTINCT m.id, m.title, m.genre, m.rating, m.image
+        FROM movies m
+        JOIN showtimes s ON m.id = s.movie_id
+        WHERE s.start_time > NOW()
+        ORDER BY s.start_time ASC
+        LIMIT ?
+    ");
+    $stmt->bindValue(1, (int)$limit, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+public function getTopRatedMovies($limit = 4) {
+    $stmt = $this->db->prepare("SELECT id, title, rating, image FROM movies ORDER BY rating DESC LIMIT ?");
+    $stmt->bindValue(1, $limit, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll();
 }

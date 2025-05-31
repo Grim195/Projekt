@@ -16,5 +16,10 @@ $totalPages = ceil($totalMovies / $perPage);
 
 // Get paginated movies
 $movies = $movieManager->getMoviesPaginated($perPage, $offset);
-
+//slider
+$latestMovies = $movieManager->getLatestMovies(5);
+//in theatre
+$inTheatreMovies = $movieManager->getMoviesWithUpcomingShowtimes(5);
+//top rated
+$topRatedMovies = $movieManager->getTopRatedMovies();
 ?>
