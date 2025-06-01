@@ -72,47 +72,32 @@ $isAdmin = isset($_SESSION['user_id']) && $_SESSION['user_id'] == 1;
         							</div>
     							</div>
 								<?php endif; ?>
-						<form class="form-style-1" action="#">
-							<div class="row">
-								<div class="col-md-12 form-it">
-									<label>Movie name</label>
-									<input type="text" placeholder="Enter keywords">
-								</div>
-								<div class="col-md-12 form-it">
-									<label>Genres & Subgenres</label>
-									<div class="group-ip">
-										<select
-											name="skills" multiple="" class="ui fluid dropdown">
-											<option value="">Enter to filter genres</option>
-											<option value="Action1">Action 1</option>
-					                        <option value="Action2">Action 2</option>
-					                        <option value="Action3">Action 3</option>
-					                        <option value="Action4">Action 4</option>
-					                        <option value="Action5">Action 5</option>
-										</select>
-									</div>	
-								</div>
-								<div class="col-md-12 form-it">
-									<label>Release Year</label>
-									<div class="row">
-										<div class="col-md-6">
-											<select>
-											  <option value="range">From</option>
-											  <option value="number">10</option>
-											</select>
-										</div>
-										<div class="col-md-6">
-											<select>
-											  <option value="range">To</option>
-											  <option value="number">20</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-12 ">
-									<input class="submit" type="submit" value="submit">
-								</div>	
-							</div>
+						<!--Search form -->
+						<form class="form-style-1" method="GET" action="moviegrid.php">
+    						<div class="row">
+        						<div class="col-md-12 form-it">
+            						<label>Movie name</label>
+            						<input type="text" name="title" placeholder="Enter keywords" value="<?= htmlspecialchars($_GET['title'] ?? '') ?>">
+        						</div>
+        						<div class="col-md-12 form-it">
+            						<label>Genre</label>
+            						<input type="text" name="genre" placeholder="e.g. Action, Comedy" value="<?= htmlspecialchars($_GET['genre'] ?? '') ?>">
+        						</div>
+        						<div class="col-md-12 form-it">
+            						<label>Release Year</label>
+            						<div class="row">
+                						<div class="col-md-6">
+                    						<input type="number" name="year_from" placeholder="From" value="<?= htmlspecialchars($_GET['year_from'] ?? '') ?>">
+                						</div>
+                						<div class="col-md-6">
+                    						<input type="number" name="year_to" placeholder="To" value="<?= htmlspecialchars($_GET['year_to'] ?? '') ?>">
+                						</div>
+            						</div>
+        						</div>
+        						<div class="col-md-12">
+            						<input class="submit" type="submit" value="Search">
+        						</div>  
+    						</div>
 						</form>
 					</div>
 					<div class="ads">

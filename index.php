@@ -130,7 +130,6 @@ include_once "parts/nav.php";
 								<span>Actor</span>
 							</div>
 						</div>
-						<a href="#" class="btn">See all celebrities<i class="ion-ios-arrow-right"></i></a>
 					</div>
 				</div>
 			</div>

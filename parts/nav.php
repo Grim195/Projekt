@@ -58,12 +58,11 @@ if (session_status() === PHP_SESSION_NONE) {
 	    </nav>
 	    
 	    <!-- top search form -->
-	    <div class="top-search">
-	    	<select>
-				<option value="united">TV show</option>
-				<option value="saab">Others</option>
-			</select>
-			<input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
-	    </div>
+<form class="top-search" method="GET" action="search.php">
+    <select name="category" disabled>
+        <option value="movies" selected>Movies</option>
+    </select>
+    <input type="text" name="q" placeholder="Search for a movie, TV Show or celebrity that you are looking for" required>
+</form>
 	</div>
 </header>

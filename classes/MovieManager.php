@@ -74,4 +74,42 @@ public function getTopRatedMovies($limit = 4) {
     $stmt->execute();
     return $stmt->fetchAll();
 }
+public function searchMovies(string $keyword): array {
+    $stmt = $this->db->prepare("SELECT * FROM movies WHERE title LIKE ? OR genre LIKE ? OR director LIKE ? OR stars LIKE ?");
+    $searchTerm = "%" . $keyword . "%";
+    $stmt->execute([$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
+    return $stmt->fetchAll();
+}
+
+public function searchMoviesAdvanced($title = '', $genre = '', $yearFrom = null, $yearTo = null): array {
+    $sql = "SELECT * FROM movies WHERE 1=1";
+    $params = [];
+
+    if (!empty($title)) {
+        $sql .= " AND title LIKE ?";
+        $params[] = '%' . $title . '%';
+    }
+
+    if (!empty($genre)) {
+        $sql .= " AND genre LIKE ?";
+        $params[] = '%' . $genre . '%';
+    }
+
+    if (!empty($yearFrom)) {
+        $sql .= " AND YEAR(release_date) >= ?";
+        $params[] = $yearFrom;
+    }
+
+    if (!empty($yearTo)) {
+        $sql .= " AND YEAR(release_date) <= ?";
+        $params[] = $yearTo;
+    }
+
+    $sql .= " ORDER BY created_at DESC";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll();
+}
 }
