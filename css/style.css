@@ -107,6 +107,13 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+.container_buy{
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 150px;
+}
 @media (min-width: 768px) {
   .container {
     width: 750px;
@@ -4229,6 +4236,11 @@ ul {
 .cate .orange {
   background-color: #ec5a1a;
 }
+.movie_title{
+margin-left: 500px !important;
+max-width: 600px !important;
+word-wrap: break-word !important;
+}
 .movie_list .movie-item-style-2 img,
 .movie_single .movie-item-style-2 img,
 .userfav_list .movie-item-style-2 img {
@@ -5788,6 +5800,7 @@ ul {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  margin-top: 5px;
 }
 .yellowbtn i {
   margin-right: 10px;
@@ -5855,6 +5868,9 @@ ul {
 .page-single {
   background-color: #020d18;
   padding: 75px 0;
+}
+.showtime-form {
+    margin-top: 150px;
 }
 .social-btn {
   margin-bottom: 40px;
@@ -6437,6 +6453,19 @@ ul {
   .form-style-1 select {
     margin-bottom: 30px;
   }
+}
+.btn_movie {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #ff3d49;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.btn_movie:hover {
+  background: #e72f3d;
 }
 .form-style-1 input.submit {
   font-family: 'Dosis', sans-serif;

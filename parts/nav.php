@@ -27,29 +27,21 @@ if (session_status() === PHP_SESSION_NONE) {
 						</li>
 						<li><a href="index.php">Home</a></li>
 						<li><a href="moviegrid.php">Movies</a></li>
-						<li><a href="celebritylist.php">celebrities</a></li>
 						<li class="dropdown first">
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
 							community <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
+								<li><a href="mytickets.php">My Tickets</a></li>
 								<li><a href="userfavoritegrid.php">user favorite grid</a></li>
-								<li><a href="userprofile.php">user profile</a></li>
 								<li class="it-last"><a href="userrate.php">user rate</a></li>
 							</ul>
 						</li>
+						<?php if (isset($_SESSION['user']['username']) && $_SESSION['user']['username'] === 'Admin'): ?>
+    					<li><a href="showtimes.php">Manage Showtimes</a></li>
+						<?php endif; ?>
 					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							pages <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a href="landing.php">Landing</a></li>
-								<li><a href="404.php">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.php">Coming soon</a></li>
-							</ul>
-						</li>                
+					<ul class="nav navbar-nav flex-child-menu menu-right">               
 						<li><a href="#">Help</a></li>
 
     				<?php if (isset($_SESSION['user'])): ?>
@@ -66,12 +58,11 @@ if (session_status() === PHP_SESSION_NONE) {
 	    </nav>
 	    
 	    <!-- top search form -->
-	    <div class="top-search">
-	    	<select>
-				<option value="united">TV show</option>
-				<option value="saab">Others</option>
-			</select>
-			<input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
-	    </div>
+<form class="top-search" method="GET" action="search.php">
+    <select name="category" disabled>
+        <option value="movies" selected>Movies</option>
+    </select>
+    <input type="text" name="q" placeholder="Search for a movie, TV Show or celebrity that you are looking for" required>
+</form>
 	</div>
 </header>
