@@ -33,8 +33,7 @@ if (session_status() === PHP_SESSION_NONE) {
 							</a>
 							<ul class="dropdown-menu level1">
 								<li><a href="mytickets.php">My Tickets</a></li>
-								<li><a href="userfavoritegrid.php">user favorite grid</a></li>
-								<li class="it-last"><a href="userrate.php">user rate</a></li>
+								<li><a href="userprofile.php">Profile</a></li>
 							</ul>
 						</li>
 						<?php if (isset($_SESSION['user']['username']) && $_SESSION['user']['username'] === 'Admin'): ?>
@@ -42,7 +41,6 @@ if (session_status() === PHP_SESSION_NONE) {
 						<?php endif; ?>
 					</ul>
 					<ul class="nav navbar-nav flex-child-menu menu-right">               
-						<li><a href="#">Help</a></li>
 
     				<?php if (isset($_SESSION['user'])): ?>
         				<li><a href="userprofile.php">Hello, <?= htmlspecialchars($_SESSION['user']['username']) ?></a></li>
