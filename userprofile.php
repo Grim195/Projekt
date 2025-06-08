@@ -48,8 +48,7 @@ require_once "DB/profile.php"; ?>
             <ul>
               <li class="active"><a href="userprofile.php">Profile</a></li>
               <li><a href="mytickets.php">My Tickets</a></li>
-              <li><a href="userfavoritegrid.php">Favorite movies</a></li>
-              <li><a href="userrate.php">Rated movies</a></li>
+              <li><a href="comingsoon.php">Favorite movies</a></li>
             </ul>
           </div>
           <div class="user-fav">
